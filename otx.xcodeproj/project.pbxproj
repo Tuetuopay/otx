@@ -34,6 +34,7 @@
 		55E1267E14DE58BB003B4A16 /* ObjcTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E1267C14DE46F3003B4A16 /* ObjcTypes.m */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		8E371E9B1922B27100627E72 /* ObjcTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E1267C14DE46F3003B4A16 /* ObjcTypes.m */; };
 		E145F6D30B437F5900615A16 /* SmoothViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E145F6D20B437F5900615A16 /* SmoothViewAnimation.m */; };
 		E182007209AE4CD800584B07 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = E182007009AE4CD800584B07 /* AppController.m */; };
 		E1978C9E0AC603A40096EE62 /* Help in Resources */ = {isa = PBXBuildFile; fileRef = E1978C6A0AC603A40096EE62 /* Help */; };
@@ -435,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E371E9B1922B27100627E72 /* ObjcTypes.m in Sources */,
 				E182007209AE4CD800584B07 /* AppController.m in Sources */,
 				E1FA34030B100D060060060A /* main.m in Sources */,
 				E1B132600B180B25002EB674 /* ExeProcessor.m in Sources */,
@@ -574,7 +576,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-wall";
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
 		};
