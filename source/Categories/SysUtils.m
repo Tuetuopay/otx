@@ -37,33 +37,34 @@
 - (NSString*)pathForTool: (NSString*)toolName
 {
     NSString* relToolBase = [NSString pathWithComponents:
-        [NSArray arrayWithObjects: @"/", @"usr", @"bin", nil]];
+                             [NSArray arrayWithObjects: @"/", @"usr", @"bin", nil]];
     NSString* relToolPath = [relToolBase stringByAppendingPathComponent: toolName];
-    NSString* selectToolPath = [relToolBase stringByAppendingPathComponent: @"xcode-select"];
     NSTask* selectTask = [[[NSTask alloc] init] autorelease];
     NSPipe* selectPipe = [NSPipe pipe];
-    NSArray* args = [NSArray arrayWithObject: @"--print-path"];
-
-    [selectTask setLaunchPath: selectToolPath];
+    NSArray* args = [NSArray arrayWithObject: toolName];
+    
+    NSString* whichToolPath = [relToolBase stringByAppendingPathComponent: @"which"];
+    
+    [selectTask setLaunchPath: whichToolPath];
     [selectTask setArguments: args];
     [selectTask setStandardInput: [NSPipe pipe]];
     [selectTask setStandardOutput: selectPipe];
     [selectTask launch];
     [selectTask waitUntilExit];
-
+    
     int selectStatus = [selectTask terminationStatus];
-
+    
     if (selectStatus == -1)
         return relToolPath;
-
+    
     NSData* selectData = [[selectPipe fileHandleForReading] availableData];
-    NSString* absToolPath = [[[NSString alloc] initWithBytes: [selectData bytes]
-                                                      length: [selectData length]
-                                                    encoding: NSUTF8StringEncoding] autorelease];
-
-    return [[absToolPath stringByTrimmingCharactersInSet:
-        [NSCharacterSet whitespaceAndNewlineCharacterSet]]
-        stringByAppendingPathComponent: relToolPath];
+    NSString* absToolPath = [[[[NSString alloc] initWithBytes: [selectData bytes]
+                                                       length: [selectData length]
+                                                     encoding: NSUTF8StringEncoding] autorelease]
+                             stringByTrimmingCharactersInSet:
+                             [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    return absToolPath;
 }
 
 @end
